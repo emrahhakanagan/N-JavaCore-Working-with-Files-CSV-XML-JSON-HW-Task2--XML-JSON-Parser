@@ -10,18 +10,15 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
         String fileName = "data.xml";
 
         List<Employee> empsAsXML = parseXML(fileName);
@@ -31,7 +28,6 @@ public class Main {
         System.out.println(empsAsJSON);
 
         writeString(empsAsJSON, "data.json");
-
 
     }
 
@@ -68,7 +64,8 @@ public class Main {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
-        Type listType = new TypeToken<List<Employee>>() {}.getType();
+        Type listType = new TypeToken<List<Employee>>() {
+        }.getType();
         return gson.toJson(list, listType);
     }
 
